@@ -5,6 +5,7 @@ import { useRequest, HttpMethod } from "@/store/request.store";
 import { encodeBase64Url, decodeBase64Url } from "@/lib/utils/base64";
 
 const DEBOUNCE_MS = 300;
+const RESERVED = new Set(["method", "url", "body"]);
 
 export function useRequestQuerySync() {
   const { method, url, body, headers, setMethod, setUrl, setBody, removeBody, setHeaders } =
@@ -37,15 +38,13 @@ export function useRequestQuerySync() {
 
     const restoredHeaders: { id: string; key: string; value: string }[] = [];
     params.forEach((value, key) => {
-      if (!["url", "body", "method"].includes(key)) {
+      if (!RESERVED.has(key)) {
         restoredHeaders.push({ id: crypto.randomUUID(), key, value });
       }
     });
-    if (restoredHeaders.length) {
-      setHeaders(restoredHeaders);
-    } else {
-      setHeaders([{ id: crypto.randomUUID(), key: "", value: "" }]);
-    }
+    setHeaders(
+      restoredHeaders.length ? restoredHeaders : [{ id: crypto.randomUUID(), key: "", value: "" }]
+    );
   }, [setUrl, setBody, setMethod, setHeaders, removeBody]);
 
   useEffect(() => {
@@ -54,31 +53,28 @@ export function useRequestQuerySync() {
     }
 
     timerRef.current = window.setTimeout(() => {
-      const params = new URLSearchParams(window.location.search);
+      const next = new URLSearchParams();
 
-      params.set("method", method);
+      next.set("method", method);
 
       const trimmedUrl = url.trim();
       if (trimmedUrl.length) {
-        params.set("url", encodeBase64Url(trimmedUrl));
-      } else {
-        params.delete("url");
+        next.set("url", encodeBase64Url(trimmedUrl));
       }
 
       if (body.length) {
-        params.set("body", encodeBase64Url(body));
-      } else {
-        params.delete("body");
+        next.set("body", encodeBase64Url(body));
       }
 
       headers.forEach((h) => {
-        if (h.key.trim().length) {
-          params.set(h.key.trim(), h.value.trim());
+        const k = h.key.trim();
+        if (k.length) {
+          next.set(k, h.value.trim());
         }
       });
 
-      const nextQs = params.toString();
-      const nextHref = nextQs ? `${window.location.pathname}?${nextQs}` : window.location.pathname;
+      const qs = next.toString();
+      const nextHref = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
 
       if (nextHref !== window.location.pathname + window.location.search) {
         window.history.replaceState(null, "", nextHref);
