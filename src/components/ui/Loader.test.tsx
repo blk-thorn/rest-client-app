@@ -1,7 +1,7 @@
 import React from "react";
 import { describe, it, vi, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import Loader from "@/components/ui/custom/Loader";
+import Loader from "@/components/ui/Loader";
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => {

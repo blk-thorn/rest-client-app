@@ -9,7 +9,7 @@ import {
   TableHead,
   TableCell,
   TableCaption,
-} from "../ui/table";
+} from "./table";
 
 describe("Table components", () => {
   it("renders Table container and table element", () => {

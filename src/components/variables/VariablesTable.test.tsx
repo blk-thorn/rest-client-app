@@ -2,9 +2,9 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import VariablesTable from "./VariablesTable";
-import { useVariablesStore } from "@/lib/stores/variables-store";
+import { useVariablesStore } from "@/lib/stores/variables";
 
-vi.mock("@/lib/stores/variables-store");
+vi.mock("@/lib/stores/variables");
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => {
     const translations: Record<string, string> = {

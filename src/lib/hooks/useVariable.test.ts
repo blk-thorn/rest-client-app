@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { useVariable } from "./useVariable";
-import { useVariablesStore } from "@/lib/stores/variables-store";
+import { useVariablesStore } from "@/lib/stores/variables";
 
-vi.mock("@/lib/stores/variables-store");
+vi.mock("@/lib/stores/variables");
 
 describe("useVariable", () => {
   const mockGetVariable = vi.fn();

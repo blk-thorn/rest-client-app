@@ -29,7 +29,7 @@ vi.mock("@/components/history/HistoryClient", () => ({
   ),
 }));
 
-vi.mock("@/components/ui/custom/Loader", () => ({
+vi.mock("@/components/ui/Loader", () => ({
   default: () => <div data-testid="loader">Loading...</div>,
 }));
 

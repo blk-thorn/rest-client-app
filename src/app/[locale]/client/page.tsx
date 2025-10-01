@@ -1,7 +1,7 @@
 "use client";
 
 import React, { lazy, Suspense } from "react";
-import Loader from "@/components/ui/custom/Loader";
+import Loader from "@/components/ui/Loader";
 
 const RestClient = lazy(() => import("@/components/client/RestClient"));
 

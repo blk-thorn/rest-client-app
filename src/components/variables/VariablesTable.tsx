@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Button } from "../ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import { Button } from "../../lib/ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../lib/ui/table";
 import { Trash } from "lucide-react";
-import { useVariablesStore } from "@/lib/stores/variables-store";
+import { useVariablesStore } from "@/lib/stores/variables";
 import { useTranslations } from "next-intl";
 
 export type Variable = {

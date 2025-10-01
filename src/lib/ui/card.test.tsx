@@ -8,7 +8,7 @@ import {
   CardAction,
   CardContent,
   CardFooter,
-} from "../ui/card";
+} from "./card";
 
 describe("Card components", () => {
   it("renders Card with default classes and data-slot", () => {

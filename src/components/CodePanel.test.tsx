@@ -12,7 +12,7 @@ vi.mock("@/lib/utils/generateCode", () => ({
   },
 }));
 
-vi.mock("@/components/ui/tabs", () => {
+vi.mock("@/lib/ui/tabs", () => {
   const Tabs = (p: { children: React.ReactNode }) => <div data-testid="tabs">{p.children}</div>;
   const TabsList = (p: { children: React.ReactNode }) => (
     <div data-testid="tabs-list">{p.children}</div>

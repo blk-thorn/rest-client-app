@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { useActionState } from "react";
 import { ROUTES } from "@/constants/routes";
-import { passwordRequirements } from "@/lib/validation/password-requirements";
-import { signUpAction } from "@/lib/actions/sign-up-action";
+import { passwordSchema } from "@/lib/validation/password";
+import { signUpAction } from "@/lib/auth/signup";
 import { FormState } from "@/types/types";
 import { useAuthRedirect } from "@/lib/hooks/useAuthRedirect";
-import Loader from "@/components/ui/custom/Loader";
+import Loader from "@/components/ui/Loader";
 import { useTranslations } from "next-intl";
 
 const initialState: FormState = { error: null };
@@ -33,7 +33,7 @@ export default function SignUpPage() {
               type="email"
               name="email"
               placeholder="example@email.com"
-              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-teal-500"
+              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-green-500/60"
               autoComplete="username"
               required
             />
@@ -45,7 +45,7 @@ export default function SignUpPage() {
               type="password"
               name="password"
               placeholder={t("password.placeholder")}
-              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-teal-500"
+              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-green-500/60"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="new-password"
@@ -54,7 +54,7 @@ export default function SignUpPage() {
           </label>
 
           <ul className="text-sm space-y-1 ml-1 mb-2">
-            {passwordRequirements.map((req) => {
+            {passwordSchema.map((req) => {
               const passed = req.test(password);
               return (
                 <li
@@ -75,7 +75,7 @@ export default function SignUpPage() {
               type="password"
               name="confirmPassword"
               placeholder={t("confirm-password.placeholder")}
-              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-teal-500"
+              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-green-500/60"
               autoComplete="new-password"
               required
             />
@@ -86,7 +86,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="bg-gradient-to-r from-teal-600 to-green-600/80 hover:from-teal-700 hover:to-green-700/80 text-white font-medium px-4 py-2 rounded disabled:opacity-50 cursor-pointer"
+            className="bg-green-500/60 hover:bg-green-600/60 text-white font-medium px-4 py-2 rounded disabled:opacity-50 cursor-pointer"
           >
             {isPending ? t("button.loading") : t("button.normal")}
           </button>

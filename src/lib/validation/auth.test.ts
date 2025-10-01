@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { signUpSchema, SignUpData } from "@/lib/validation/auth-schema";
+import { signUpSchema, SignUpData } from "@/lib/validation/auth";
 
 describe("signUpSchema", () => {
   const validData: SignUpData = {

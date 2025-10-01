@@ -3,10 +3,10 @@
 import { useActionState } from "react";
 import { ROUTES } from "@/constants/routes";
 import { FormState } from "@/types/types";
-import { signInAction } from "@/lib/actions/sign-in-action";
+import { signInAction } from "@/lib/auth/signin";
 import Link from "next/link";
 import { useAuthRedirect } from "@/lib/hooks/useAuthRedirect";
-import Loader from "@/components/ui/custom/Loader";
+import Loader from "@/components/ui/Loader";
 import { useTranslations } from "next-intl";
 
 export default function SignInPage() {
@@ -32,7 +32,7 @@ export default function SignInPage() {
               type="email"
               name="email"
               placeholder="example@email.com"
-              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-teal-500"
+              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-green-500/60"
               autoComplete="username"
               required
             />
@@ -44,7 +44,7 @@ export default function SignInPage() {
               type="password"
               name="password"
               placeholder={t("password.placeholder")}
-              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-teal-500"
+              className="mt-1 rounded bg-gray-900 border border-gray-700 px-3 py-2 outline-none focus:ring-2 focus:ring-green-500/60"
               autoComplete="current-password"
               required
             />
@@ -55,7 +55,7 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="bg-gradient-to-r from-teal-600 to-green-600/80 hover:from-teal-700 hover:to-green-700/80 text-white font-medium px-4 py-2 rounded disabled:opacity-50 cursor-pointer"
+            className="bg-green-500/60 hover:bg-green-600/60 text-white font-medium px-4 py-2 rounded disabled:opacity-50 cursor-pointer"
           >
             {isPending ? t("button.loading") : t("button.normal")}
           </button>

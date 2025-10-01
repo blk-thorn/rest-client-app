@@ -22,7 +22,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className="min-h-dvh bg-gray-900 text-white antialiased">
+      <body className="min-h-dvh bg-gray-800 text-white antialiased">
         <NextIntlClientProvider>
           <AppShell>{children}</AppShell>
         </NextIntlClientProvider>

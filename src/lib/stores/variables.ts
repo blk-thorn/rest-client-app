@@ -2,14 +2,14 @@ import { Variable } from "@/components/variables/VariablesTable";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-type VariablesStore = {
+type Variables = {
   variables: Variable[];
   addVariable: (variable: Variable) => void;
   deleteVariable: (name: string) => void;
   getVariable: (name: string) => string | undefined;
 };
 
-export const useVariablesStore = create<VariablesStore>()(
+export const useVariablesStore = create<Variables>()(
   persist(
     (set, get) => ({
       variables: [],

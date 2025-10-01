@@ -1,4 +1,4 @@
-import { useVariablesStore } from "@/lib/stores/variables-store";
+import { useVariablesStore } from "@/lib/stores/variables";
 
 export const useVariable = () => {
   const { getVariable } = useVariablesStore();

@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/lib/ui/card";
+import { Label } from "@/lib/ui/label";
+import { Button } from "@/lib/ui/button";
 import Link from "next/link";
 import { FC } from "react";
 import { DeveloperCardProps } from "@/types/types";
@@ -20,13 +20,13 @@ export const DeveloperCard: FC<DeveloperCardProps> = ({ member }) => {
         height={300}
         src={member.avatar.src}
         alt={member.name}
-        className="w-24 h-24 rounded-full object-cover border-2 border-green-300"
+        className="w-24 h-24 rounded-full object-cover border-2 border-gray-50/80"
       />
 
       <CardContent className="flex flex-col items-center gap-2 p-0 w-full h-full">
         <div className="flex flex-col items-center text-center">
           <Label className="text-xl font-semibold text-white">{t(member.name)}</Label>
-          <p className="text-md text-green-300 font-medium mb-2">{t(member.role)}</p>
+          <p className="text-md text-green-400/60 font-medium mb-2">{t(member.role)}</p>
           <p className="text-sm text-gray-300">{t(member.description)}</p>
         </div>
 
@@ -40,7 +40,7 @@ export const DeveloperCard: FC<DeveloperCardProps> = ({ member }) => {
           asChild
           size="sm"
           variant="outline"
-          className="mt-2 w-full bg-gray-800 hover:bg-gray-700 text-white border-none"
+          className="mt-2 w-full bg-slate-700 hover:bg-slate-800 text-white border-none"
         >
           <Link href={member.github} target="_blank">
             GitHub

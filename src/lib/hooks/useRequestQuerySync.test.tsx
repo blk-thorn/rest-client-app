@@ -35,7 +35,7 @@ const store = {
   setHeaders: vi.fn<(v: Header[]) => void>(),
 };
 
-vi.mock("@/store/request.store", () => ({
+vi.mock("@/lib/stores/request", () => ({
   useRequest: (): UseRequest => store,
 }));
 

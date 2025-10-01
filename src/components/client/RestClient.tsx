@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { HttpMethod, useRequest } from "@/store/request.store";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/lib/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/lib/ui/tabs";
+import { HttpMethod, useRequest } from "@/lib/stores/request";
+import { Input } from "@/lib/ui/input";
 import { useState } from "react";
 import { handleSend } from "@/lib/utils/handleSend";
 import { useTranslations } from "next-intl";
@@ -79,7 +79,7 @@ export default function RestClient() {
           onChange={(e) => setUrl(e.target.value)}
         />
         <Button
-          className="px-6 bg-gradient-to-r from-teal-600 to-green-600/80 hover:from-teal-700 hover:to-green-700/80 text-white cursor-pointer"
+          className="px-6 bg-green-500/60 hover:bg-green-600/60 text-white cursor-pointer"
           disabled={!canSend || isLoading}
           onClick={() => {
             const updatedData = updateRequestData();

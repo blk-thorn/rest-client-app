@@ -2,7 +2,7 @@
 
 import React, { lazy, Suspense } from "react";
 import { useTranslations } from "next-intl";
-import Loader from "@/components/ui/custom/Loader";
+import Loader from "@/components/ui/Loader";
 
 const VariablesForm = lazy(() => import("@/components/variables/VariablesForm"));
 const VariablesTable = lazy(() => import("@/components/variables/VariablesTable"));

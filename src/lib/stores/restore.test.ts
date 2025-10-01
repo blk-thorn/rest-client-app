@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { useResponse, type BodyKind, type ResponseHeader } from "./restore.store";
+import { useResponse, type BodyKind, type ResponseHeader } from "./restore";
 
 const ISO_T0 = "2024-01-02T03:04:05.678Z";
 

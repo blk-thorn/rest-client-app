@@ -84,7 +84,7 @@ const h = vi.hoisted(() => {
   };
 });
 
-vi.mock("@/store/request.store", () => {
+vi.mock("@/lib/stores/request", () => {
   const HttpMethod = { GET: "GET", POST: "POST", PUT: "PUT", DELETE: "DELETE" } as const;
   const useRequest = (): UseRequest => ({
     method: h.state.method,
@@ -150,13 +150,13 @@ vi.mock("next-intl", () => ({
 }));
 
 import type { ButtonHTMLAttributes, InputHTMLAttributes, JSX } from "react";
-vi.mock("@/components/ui/button", () => ({
+vi.mock("@/lib/ui/button", () => ({
   Button: (props: ButtonHTMLAttributes<HTMLButtonElement>): JSX.Element => <button {...props} />,
 }));
-vi.mock("@/components/ui/input", () => ({
+vi.mock("@/lib/ui/input", () => ({
   Input: (props: InputHTMLAttributes<HTMLInputElement>): JSX.Element => <input {...props} />,
 }));
-vi.mock("@/components/ui/tabs", () => {
+vi.mock("@/lib/ui/tabs", () => {
   const Tabs = ({ children }: { children: React.ReactNode }): JSX.Element => (
     <div data-testid="tabs">{children}</div>
   );

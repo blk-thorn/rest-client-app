@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { auth } from "@/db/firebase";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { toast } from "sonner";
-import Logo from "@/components/ui/custom/Logo";
+import Logo from "@/components/ui/Logo";
 import { useRouter } from "@/i18n/navigation";
 import { usePathname } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
@@ -78,13 +78,13 @@ export default function Header() {
           <>
             <Link
               href={ROUTES.HOME}
-              className="bg-gradient-to-r from-sky-600 to-blue-600/80 hover:from-sky-700 hover:to-blue-700/80 px-3 py-1 rounded text-sm cursor-pointer"
+              className="bg-green-500/60 hover:bg-green-600/60 px-3 py-1 rounded text-sm cursor-pointer"
             >
               {t("button.main")}
             </Link>
             <button
               onClick={handleSignOut}
-              className="bg-gradient-to-r from-teal-600 to-green-600/80 hover:from-teal-700 hover:to-green-700/80 px-3 py-1 rounded text-sm cursor-pointer"
+              className="bg-blue-500/60 hover:bg-blue-600/60 px-3 py-1 rounded text-sm cursor-pointer"
             >
               {t("button.sign-out")}
             </button>
@@ -93,13 +93,13 @@ export default function Header() {
           <>
             <Link
               href={ROUTES.SIGN_IN}
-              className="bg-gradient-to-r from-sky-600 to-blue-600/80 hover:from-sky-700 hover:to-blue-700/80 px-3 py-1 rounded text-sm cursor-pointer"
+              className="bg-green-500/60 hover:bg-green-600/60 px-3 py-1 rounded text-sm cursor-pointer"
             >
               {t("button.sign-in")}
             </Link>
             <Link
               href={ROUTES.SIGN_UP}
-              className="bg-gradient-to-r from-teal-600 to-green-600/80 hover:from-teal-700 hover:to-green-700/80 px-3 py-1 rounded text-sm cursor-pointer"
+              className="bg-slate-700 hover:bg-slate-800 px-3 py-1 rounded text-sm cursor-pointer"
             >
               {t("button.sign-up")}
             </Link>

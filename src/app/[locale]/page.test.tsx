@@ -18,10 +18,10 @@ vi.mock("@/components/WelcomeMessage", () => ({
   ),
 }));
 vi.mock("@/components/GeneraInfo", () => ({ default: () => <div>GeneralInfo</div> }));
-vi.mock("@/components/ui/custom/UserButtons", () => ({
+vi.mock("@/components/ui/UserButtons", () => ({
   UserButtons: () => <div>UserButtons</div>,
 }));
-vi.mock("@/components/ui/custom/Loader", () => ({ default: () => <div>Loader</div> }));
+vi.mock("@/components/ui/Loader", () => ({ default: () => <div>Loader</div> }));
 
 import * as useAuthHook from "@/lib/hooks/useAuthToken";
 vi.mock("@/lib/hooks/useAuthToken");

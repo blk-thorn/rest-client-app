@@ -32,9 +32,9 @@ const createFormData = (data: Record<string, string>): FormData => {
   return fd;
 };
 
-describe("auth actions", () => {
-  let signInAction: typeof import("./sign-in-action").signInAction;
-  let signUpAction: typeof import("./sign-up-action").signUpAction;
+describe("auth auth", () => {
+  let signInAction: typeof import("./signin").signInAction;
+  let signUpAction: typeof import("./signup").signUpAction;
 
   let mocks: {
     signInWithEmailAndPassword: Mock;
@@ -52,11 +52,11 @@ describe("auth actions", () => {
       updateProfile: authModule.updateProfile as Mock,
     };
 
-    signInAction = (await import("./sign-in-action")).signInAction;
-    signUpAction = (await import("./sign-up-action")).signUpAction;
+    signInAction = (await import("./signin")).signInAction;
+    signUpAction = (await import("./signup")).signUpAction;
   });
 
-  describe("signInAction", () => {
+  describe("signin", () => {
     it("should return error if email or password missing", async () => {
       const fd = createFormData({ email: "", password: "" });
       const result: FormState = await signInAction({ error: null }, fd);
@@ -88,7 +88,7 @@ describe("auth actions", () => {
     });
   });
 
-  describe("signUpAction", () => {
+  describe("signup", () => {
     it("should return error if validation fails", async () => {
       const fd = createFormData({ email: "invalid", password: "123", confirmPassword: "1234" });
       const result: FormState = await signUpAction({ error: null }, fd);

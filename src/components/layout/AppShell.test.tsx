@@ -2,7 +2,7 @@ import { JSX } from "react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 
-vi.mock("../ui/sonner", () => ({
+vi.mock("../../lib/ui/sonner", () => ({
   Toaster: (): JSX.Element => <div data-testid="toaster">toaster</div>,
 }));
 

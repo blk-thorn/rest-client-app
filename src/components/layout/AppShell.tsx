@@ -1,4 +1,4 @@
-import { Toaster } from "../ui/sonner";
+import { Toaster } from "../../lib/ui/sonner";
 import Footer from "./Footer";
 import Header from "./Header";
 

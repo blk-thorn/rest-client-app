@@ -1,7 +1,7 @@
 import React from "react";
 import { describe, it, vi, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { UserButtons } from "@/components/ui/custom/UserButtons";
+import { UserButtons } from "@/components/ui/UserButtons";
 import { ROUTES } from "@/constants/routes";
 
 vi.mock("next-intl", () => ({

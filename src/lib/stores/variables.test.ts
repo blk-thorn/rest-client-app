@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { useVariablesStore } from "./variables-store";
+import { useVariablesStore } from "./variables";
 import { Variable } from "@/components/variables/VariablesTable";
 
 vi.mock("zustand/middleware", () => {
@@ -16,7 +16,7 @@ vi.mock("zustand/middleware", () => {
   };
 });
 
-describe("VariablesStore", () => {
+describe("Variables", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     useVariablesStore.setState({

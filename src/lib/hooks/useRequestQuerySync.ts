@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useRequest, HttpMethod } from "@/store/request.store";
+import { useRequest, HttpMethod } from "@/lib/stores/request";
 import { encodeBase64Url, decodeBase64Url } from "@/lib/utils/base64";
 
 const DEBOUNCE_MS = 300;

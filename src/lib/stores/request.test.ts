@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
-import { useRequest } from "./request.store";
+import { useRequest } from "./request";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 type Header = { id: string; key: string; value: string };

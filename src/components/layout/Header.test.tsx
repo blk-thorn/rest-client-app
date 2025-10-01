@@ -30,7 +30,7 @@ vi.mock("sonner", () => ({
   toast: { success: (m: string) => h.toast.success(m), error: (m: string) => h.toast.error(m) },
 }));
 
-vi.mock("@/components/ui/custom/Logo", () => ({
+vi.mock("@/components/ui/Logo", () => ({
   __esModule: true as const,
   default: () => <div data-testid="logo" />,
 }));

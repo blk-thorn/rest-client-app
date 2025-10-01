@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
 
 describe("Tabs components", () => {
   it("renders Tabs root with data-slot", () => {

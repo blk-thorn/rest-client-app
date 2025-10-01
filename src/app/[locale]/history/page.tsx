@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { adminAuth, db } from "@/db/firebase-admin";
 import dynamic from "next/dynamic";
-import Loader from "@/components/ui/custom/Loader";
+import Loader from "@/components/ui/Loader";
 import React from "react";
 
 export type HistoryItem = {

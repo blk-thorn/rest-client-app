@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/lib/ui/tabs";
 import { generateCodeSnippets } from "@/lib/utils/generateCode";
 import type { GenHeader, GenMethod } from "@/lib/codegen/helpers";
 import { useTranslations } from "next-intl";

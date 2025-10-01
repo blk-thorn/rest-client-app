@@ -1,14 +1,14 @@
 import { describe, it, expect, vi, beforeEach, Mock } from "vitest";
 import { render, screen } from "@testing-library/react";
 import SignUpPage from "@/app/[locale]/signup/page";
-import * as actions from "@/lib/actions/sign-up-action";
+import * as actions from "@/lib/auth/signup";
 import * as hooks from "@/lib/hooks/useAuthRedirect";
 import { useTranslations } from "next-intl";
-import { passwordRequirements } from "@/lib/validation/password-requirements";
+import { passwordSchema } from "@/lib/validation/password";
 import { ROUTES } from "@/constants/routes";
 
 const setupMocks = () => {
-  vi.mock("@/lib/actions/sign-up-action", () => ({ signUpAction: vi.fn() }));
+  vi.mock("@/lib/auth/signup", () => ({ signUpAction: vi.fn() }));
   vi.mock("@/lib/hooks/useAuthRedirect", () => ({ useAuthRedirect: vi.fn() }));
   vi.mock("next-intl", () => ({ useTranslations: vi.fn() }));
   vi.mock("next/link", async () => {
@@ -59,7 +59,7 @@ describe("SignUpPage", () => {
 
   it("renders all password requirements", () => {
     renderPage();
-    passwordRequirements.forEach((req) => {
+    passwordSchema.forEach((req) => {
       expect(screen.getByText((content) => content.includes(req.label))).toBeInTheDocument();
     });
   });

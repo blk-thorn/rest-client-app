@@ -1,10 +1,10 @@
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { useVariablesStore } from "@/lib/stores/variables-store";
+import { Input } from "../../lib/ui/input";
+import { Button } from "../../lib/ui/button";
+import { useVariablesStore } from "@/lib/stores/variables";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AddVariableData, createAddVariableSchema } from "@/lib/validation/variables-schema";
+import { AddVariableData, createAddVariableSchema } from "@/lib/validation/variables";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -62,13 +62,13 @@ function VariablesForm() {
           {...register("value")}
         ></Input>
         {errors.value && (
-          <p className="text-red-400 text-sm text-left mt-2">{errors.value.message}</p>
+          <p className="text-red-500/60 text-sm text-left mt-2">{errors.value.message}</p>
         )}
       </div>
       <Button
         type="submit"
         disabled={!isValid || isLoading}
-        className="bg-gradient-to-r from-teal-600 to-green-600/80 hover:from-teal-700 hover:to-green-700/80 text-white px-6 py-2 rounded shadow-md transition"
+        className="bg-green-500/60 hover:bg-green-600/60 text-white px-6 py-2 rounded shadow-md transition"
       >
         {isLoading ? t("button.loading") : t("button.normal")}
       </Button>

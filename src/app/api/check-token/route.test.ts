@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import * as firebaseAdmin from "@/db/firebase-admin";
 import * as headers from "next/headers";
-import { GET } from "../route";
+import { GET } from "./route";
 
 interface CheckTokenResponse {
   valid: boolean;

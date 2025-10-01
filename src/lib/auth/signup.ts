@@ -1,6 +1,6 @@
 "use client";
 
-import { SignUpData, signUpSchema } from "@/lib/validation/auth-schema";
+import { SignUpData, signUpSchema } from "@/lib/validation/auth";
 import { auth } from "@/db/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { FormState } from "@/types/types";

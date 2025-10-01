@@ -4,7 +4,7 @@ import SignInPage from "@/app/[locale]/signin/page";
 import * as hooks from "@/lib/hooks/useAuthRedirect";
 import { useTranslations } from "next-intl";
 
-vi.mock("@/lib/actions/sign-in-action", () => ({
+vi.mock("@/lib/auth/signin", () => ({
   signInAction: vi.fn(),
 }));
 

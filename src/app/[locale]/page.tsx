@@ -2,8 +2,8 @@
 
 import WelcomeMessage from "@/components/WelcomeMessage";
 import GeneralInfo from "@/components/GeneraInfo";
-import { UserButtons } from "@/components/ui/custom/UserButtons";
-import Loader from "@/components/ui/custom/Loader";
+import { UserButtons } from "@/components/ui/UserButtons";
+import Loader from "@/components/ui/Loader";
 import { useAuthToken } from "@/lib/hooks/useAuthToken";
 
 export default function HomePage() {

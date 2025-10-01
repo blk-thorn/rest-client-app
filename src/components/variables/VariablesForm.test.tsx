@@ -2,10 +2,10 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import VariablesForm from "./VariablesForm";
-import { useVariablesStore } from "@/lib/stores/variables-store";
+import { useVariablesStore } from "@/lib/stores/variables";
 import { toast } from "sonner";
 
-vi.mock("@/lib/stores/variables-store");
+vi.mock("@/lib/stores/variables");
 vi.mock("sonner");
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => {
