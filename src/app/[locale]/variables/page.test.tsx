@@ -2,11 +2,11 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import VariablesPage from "./page";
 
-vi.mock("@/components/variables/VariablesForm", () => ({
+vi.mock("@/components/variables/variables-form", () => ({
   default: () => <div data-testid="variables-form">Variables Form</div>,
 }));
 
-vi.mock("@/components/variables/VariablesTable", () => ({
+vi.mock("@/components/variables/variables-table", () => ({
   default: () => <div data-testid="variables-table">Variables Table</div>,
 }));
 

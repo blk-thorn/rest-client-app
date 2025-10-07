@@ -1,15 +1,15 @@
 import { describe, it, expect, vi, beforeEach, Mock } from "vitest";
 import { render, screen } from "@testing-library/react";
 import SignUpPage from "@/app/[locale]/signup/page";
-import * as actions from "@/lib/auth/signup";
-import * as hooks from "@/lib/hooks/useAuthRedirect";
+import * as actions from "@/lib/auth/sign-up-action";
+import * as hooks from "@/lib/hooks/use-auth-redirect";
 import { useTranslations } from "next-intl";
 import { passwordSchema } from "@/lib/validation/password";
 import { ROUTES } from "@/constants/routes";
 
 const setupMocks = () => {
-  vi.mock("@/lib/auth/signup", () => ({ signUpAction: vi.fn() }));
-  vi.mock("@/lib/hooks/useAuthRedirect", () => ({ useAuthRedirect: vi.fn() }));
+  vi.mock("@/lib/auth/sign-up-action", () => ({ signUpAction: vi.fn() }));
+  vi.mock("@/lib/hooks/use-auth-redirect", () => ({ useAuthRedirect: vi.fn() }));
   vi.mock("next-intl", () => ({ useTranslations: vi.fn() }));
   vi.mock("next/link", async () => {
     const actual = await vi.importActual("next/link");

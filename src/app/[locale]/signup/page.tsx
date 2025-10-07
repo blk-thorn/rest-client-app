@@ -5,10 +5,10 @@ import { useState } from "react";
 import { useActionState } from "react";
 import { ROUTES } from "@/constants/routes";
 import { passwordSchema } from "@/lib/validation/password";
-import { signUpAction } from "@/lib/auth/signup";
+import { signUpAction } from "@/lib/auth/sign-up-action";
 import { FormState } from "@/types/types";
-import { useAuthRedirect } from "@/lib/hooks/useAuthRedirect";
-import Loader from "@/components/ui/Loader";
+import { useAuthRedirect } from "@/lib/hooks/use-auth-redirect";
+import Loader from "@/components/ui/loader";
 import { useTranslations } from "next-intl";
 
 const initialState: FormState = { error: null };

@@ -2,10 +2,10 @@
 
 import React, { lazy, Suspense } from "react";
 import { useTranslations } from "next-intl";
-import Loader from "@/components/ui/Loader";
+import Loader from "@/components/ui/loader";
 
-const VariablesForm = lazy(() => import("@/components/variables/VariablesForm"));
-const VariablesTable = lazy(() => import("@/components/variables/VariablesTable"));
+const VariablesForm = lazy(() => import("@/components/variables/variables-form"));
+const VariablesTable = lazy(() => import("@/components/variables/variables-table"));
 
 function VariablesPage() {
   const t = useTranslations("Variables");

@@ -10,21 +10,21 @@ vi.mock("@/db/firebase", () => ({
   },
 }));
 
-vi.mock("@/components/WelcomeMessage", () => ({
+vi.mock("@/components/onboarding/welcome-message", () => ({
   default: ({ isAuthenticated, username }: { isAuthenticated: boolean; username: string }) => (
     <div>
       WelcomeMessage-{isAuthenticated ? "auth" : "guest"}-{username}
     </div>
   ),
 }));
-vi.mock("@/components/GeneraInfo", () => ({ default: () => <div>GeneralInfo</div> }));
-vi.mock("@/components/ui/UserButtons", () => ({
+vi.mock("@/components/onboarding/general-info", () => ({ default: () => <div>GeneralInfo</div> }));
+vi.mock("@/components/ui/user-buttons", () => ({
   UserButtons: () => <div>UserButtons</div>,
 }));
-vi.mock("@/components/ui/Loader", () => ({ default: () => <div>Loader</div> }));
+vi.mock("@/components/ui/loader", () => ({ default: () => <div>Loader</div> }));
 
-import * as useAuthHook from "@/lib/hooks/useAuthToken";
-vi.mock("@/lib/hooks/useAuthToken");
+import * as useAuthHook from "@/lib/hooks/use-auth-token";
+vi.mock("@/lib/hooks/use-auth-token");
 
 import HomePage from "@/app/[locale]/page";
 

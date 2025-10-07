@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { genFetch } from "./fetch";
 
 describe("genFetch", () => {
-  it("GET: тримит URL, нормализует заголовки, не добавляет body", () => {
+  it("GET: trims URL, normalizes headers, omits body entirely", () => {
     const out = genFetch(
       "GET",
       "   https://api.test/path   ",
@@ -27,7 +27,7 @@ describe("genFetch", () => {
     expect(out).not.toContain("body:");
   });
 
-  it("POST с JSON body: добавляет body: JSON.stringify({...}) c pretty-форматированием", () => {
+  it("POST with valid JSON body: uses JSON.stringify with pretty formatting", () => {
     const out = genFetch("POST", "https://api.test", [], `{"a":1,"b":"x"}`);
 
     expect(out).toContain('method: "POST",');
@@ -39,7 +39,7 @@ describe("genFetch", () => {
     );
   });
 
-  it("POST с сырым body: использует template literal и экранирует бэктики", () => {
+  it("POST with raw/non-JSON body: uses template literal and escapes backticks", () => {
     const body = "x`y`z";
     const out = genFetch("POST", "https://api.test", [], body);
 

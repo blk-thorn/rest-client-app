@@ -11,20 +11,20 @@ import {
 
 describe("helpers", () => {
   describe("methodSupportsBody", () => {
-    it("возвращает true для методов с телом", () => {
+    it("returns true for HTTP methods that support request body", () => {
       expect(methodSupportsBody("POST")).toBe(true);
       expect(methodSupportsBody("PUT")).toBe(true);
       expect(methodSupportsBody("PATCH")).toBe(true);
       expect(methodSupportsBody("DELETE")).toBe(true);
     });
 
-    it("возвращает false для методов без тела", () => {
+    it("returns false for methods that do not support request body", () => {
       expect(methodSupportsBody("GET")).toBe(false);
     });
   });
 
   describe("normalizeHeaders", () => {
-    it("триммит key/value, убирает двоеточие на конце ключа и фильтрует пустые ключи", () => {
+    it("trims keys and values, removes trailing colon from keys, and filters out empty keys", () => {
       const input: GenHeader[] = [
         { key: "  Content-Type:  ", value: "  application/json  " },
         { key: "X-Auth:", value: " t " },
@@ -38,14 +38,14 @@ describe("helpers", () => {
       ]);
     });
 
-    it("сохраняет непустые ключи без изменений, если правок не нужно", () => {
+    it("leaves clean, valid headers unchanged", () => {
       const input: GenHeader[] = [{ key: "Accept", value: "text/plain" }];
       expect(normalizeHeaders(input)).toEqual([{ key: "Accept", value: "text/plain" }]);
     });
   });
 
   describe("tryParseJson", () => {
-    it("возвращает null для пустых/пробельных строк и для строк не с '{' или '['", () => {
+    it("returns null for empty/whitespace strings and non-object/array JSON", () => {
       expect(tryParseJson("")).toBeNull();
       expect(tryParseJson("   ")).toBeNull();
       expect(tryParseJson("hello")).toBeNull();
@@ -53,7 +53,7 @@ describe("helpers", () => {
       expect(tryParseJson("true")).toBeNull();
     });
 
-    it("парсит валидный JSON-объект и массив", () => {
+    it("successfully parses valid JSON objects and arrays", () => {
       const obj = tryParseJson(`{"a":1,"b":"x"}`) as { a: number; b: string };
       expect(obj).toEqual({ a: 1, b: "x" });
 
@@ -61,14 +61,14 @@ describe("helpers", () => {
       expect(arr).toEqual([1, 2, 3]);
     });
 
-    it("возвращает null при невалидном JSON", () => {
+    it("returns null on invalid JSON", () => {
       expect(tryParseJson(`{invalid`)).toBeNull();
       expect(tryParseJson(`[1, 2,`)).toBeNull();
     });
   });
 
   describe("escShellSingle", () => {
-    it("экранирует одинарные кавычки для POSIX shell", () => {
+    it("properly escapes single quotes for POSIX shell (bash, zsh, sh)", () => {
       expect(escShellSingle("simple")).toBe("simple");
       expect(escShellSingle("it's fine")).toBe("it'\"'\"'s fine");
       expect(escShellSingle("'start' and 'end'")).toBe("'\"'\"'start'\"'\"' and '\"'\"'end'\"'\"'");
@@ -76,7 +76,7 @@ describe("helpers", () => {
   });
 
   describe("escBackticks", () => {
-    it("экранирует обратные кавычки", () => {
+    it("escapes backticks to prevent template literal injection", () => {
       expect(escBackticks("no ticks")).toBe("no ticks");
       expect(escBackticks("`code` block")).toBe("\\`code\\` block");
       expect(escBackticks("a`b`c`")).toBe("a\\`b\\`c\\`");
@@ -84,7 +84,7 @@ describe("helpers", () => {
   });
 
   describe("headersToObject", () => {
-    it("преобразует массив заголовков в объект", () => {
+    it("converts array of header key-value pairs to an object", () => {
       const hs: GenHeader[] = [
         { key: "A", value: "1" },
         { key: "B", value: "2" },
@@ -92,7 +92,7 @@ describe("helpers", () => {
       expect(headersToObject(hs)).toEqual({ A: "1", B: "2" });
     });
 
-    it("последнее значение с одинаковым ключом побеждает", () => {
+    it("last duplicate header wins", () => {
       const hs: GenHeader[] = [
         { key: "X", value: "1" },
         { key: "X", value: "2" },

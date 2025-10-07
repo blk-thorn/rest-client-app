@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { adminAuth, db } from "@/db/firebase-admin";
 import dynamic from "next/dynamic";
-import Loader from "@/components/ui/Loader";
+import Loader from "@/components/ui/loader";
 import React from "react";
 
 export type HistoryItem = {
@@ -21,7 +21,7 @@ export type HistoryItem = {
 };
 
 const HistoryClient = dynamic<{ history: HistoryItem[] }>(
-  () => import("@/components/history/HistoryClient"),
+  () => import("@/components/history/history-client"),
   {
     loading: () => <Loader />,
   }

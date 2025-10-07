@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, Mock } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import GlobalError from "./global-errors";
 import { useTranslations } from "next-intl";
@@ -25,7 +25,7 @@ describe("GlobalError Component", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useTranslations as vi.Mock).mockReturnValue(mockTranslations);
+    (useTranslations as Mock).mockReturnValue(mockTranslations);
     mockTranslations.mockImplementation((key: string) => {
       const translations: Record<string, string> = {
         title: "Something went wrong!",

@@ -2,14 +2,14 @@ import { describe, it, expect } from "vitest";
 import { genJava } from "./java";
 
 describe("genJava", () => {
-  it("генерирует GET без body: .get()", () => {
+  it("generates GET request without body using .get()", () => {
     const out = genJava("GET", "https://api.example.dev/data", [], "");
     expect(out).toContain('.url("https://api.example.dev/data")');
     expect(out).toContain(".get()");
     expect(out).toContain("OkHttpClient client = new OkHttpClient();");
   });
 
-  it("POST с JSON body: .post(body), RequestBody с JSON.stringify", () => {
+  it("generates POST with JSON body: uses .post() and RequestBody with escaped JSON", () => {
     const body = '{"a":1}';
     const out = genJava("POST", "https://api.example.dev/add", [], body);
     expect(out).toContain('.url("https://api.example.dev/add")');
@@ -17,24 +17,24 @@ describe("genJava", () => {
     expect(out).toContain('RequestBody body = RequestBody.create("{\\"a\\":1}", mediaType);');
   });
 
-  it("PUT с сырым body: .put(body)", () => {
+  it("generates PUT with raw body: uses .put() and properly escaped string", () => {
     const body = "plain text";
     const out = genJava("PUT", "https://api.example.dev/update", [], body);
     expect(out).toContain(".put(body)");
     expect(out).toContain('RequestBody body = RequestBody.create("plain text", mediaType);');
   });
 
-  it("PATCH использует .patch(body)", () => {
+  it("uses .patch() for PATCH requests with body", () => {
     const out = genJava("PATCH", "https://api.example.dev/patch", [], '{"k":2}');
     expect(out).toContain(".patch(body)");
   });
 
-  it("DELETE без body: .delete()", () => {
+  it("generates DELETE without body using .delete()", () => {
     const out = genJava("DELETE", "https://api.example.dev/remove", [], "");
     expect(out).toContain(".delete()");
   });
 
-  it("DELETE c телом: .delete(body), MediaType берётся из заголовка; сырое тело экранируется", () => {
+  it("generates DELETE with body: uses .delete(body), respects explicit Content-Type, escapes quotes", () => {
     const out = genJava(
       "DELETE",
       "https://api.example.dev/remove",

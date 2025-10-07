@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { genPython } from "./python";
 
 describe("genPython", () => {
-  it("GET без body: только headers и вызов requests.get", () => {
+  it("GET without body: only headers and calls requests.get", () => {
     const out = genPython(
       "GET",
       " https://api.example.dev/list ",
@@ -16,7 +16,7 @@ describe("genPython", () => {
     expect(out).not.toContain("payload =");
   });
 
-  it("POST с JSON body: генерирует payload dict и requests.post(..., json=payload)", () => {
+  it("POST with valid JSON body: generates Python dict as payload and uses json=payload", () => {
     const body = '{"a":1,"b":"x"}';
     const out = genPython("POST", "https://api.example.dev/add", [], body);
 
@@ -24,7 +24,7 @@ describe("genPython", () => {
     expect(out).toContain("response = requests.post(url, json=payload, headers=headers)");
   });
 
-  it('PUT с сырым body: payload = "text"', () => {
+  it("PUT with raw/non-JSON body: assigns string to payload and uses data=payload", () => {
     const out = genPython("PUT", "https://api.example.dev/upd", [], "raw text");
 
     expect(out).toContain('payload = "raw text"');

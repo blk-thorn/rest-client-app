@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { generateCodeSnippets } from "./index";
 
-// Моки генераторов (до импорта они уже применены — здесь ок)
 vi.mock("./langs/curl", () => ({ genCurl: vi.fn(() => "curl-out") }));
 vi.mock("./langs/fetch", () => ({ genFetch: vi.fn(() => "fetch-out") }));
 vi.mock("./langs/xhr", () => ({ genXhr: vi.fn(() => "xhr-out") }));
@@ -35,7 +34,7 @@ describe("codegen/index.generateCodeSnippets", () => {
     vi.clearAllMocks();
   });
 
-  it("вызывает все генераторы с одними и теми же аргументами", () => {
+  it("calls all language generators with the same arguments and returns their outputs", () => {
     const out = generateCodeSnippets(input);
 
     expect(genCurl).toHaveBeenCalledWith(input.method, input.url, input.headers, input.body);
@@ -59,14 +58,14 @@ describe("codegen/index.generateCodeSnippets", () => {
     });
   });
 
-  it("прокидывает пустые значения как есть", () => {
+  it("handles empty or missing values and still generates all snippets", () => {
     const empty = generateCodeSnippets({
       method: "GET",
       url: "",
       headers: [],
       body: "",
     });
-    // результат — это просто склейка из моков; важно, что функция не падает
+
     expect(empty).toHaveProperty("curl");
     expect(empty).toHaveProperty("fetch");
     expect(empty).toHaveProperty("xhr");

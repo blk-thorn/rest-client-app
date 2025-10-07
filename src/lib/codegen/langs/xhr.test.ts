@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { genXhr } from "./xhr";
 
 describe("genXhr", () => {
-  it("GET: тримит URL, нормализует заголовки и шлёт без body", () => {
+  it("GET: trims URL, normalizes headers, sends request without body", () => {
     const out = genXhr(
       "GET",
       "   https://api.example.dev/items   ",
@@ -22,7 +22,7 @@ describe("genXhr", () => {
     expect(out).not.toContain("const data =");
   });
 
-  it("POST с JSON body: создаёт const data и шлёт JSON.stringify(data)", () => {
+  it("POST with valid JSON body: creates pretty-printed data object and sends via JSON.stringify", () => {
     const body = '{"a":1,"b":"x"}';
     const out = genXhr("POST", "https://api.example.dev/create", [], body);
 
@@ -36,7 +36,7 @@ describe("genXhr", () => {
     expect(out).toContain("xhr.send(JSON.stringify(data));");
   });
 
-  it("POST с сырым body: использует template literal и экранирует бэктики", () => {
+  it("POST with raw/non-JSON body: uses template literal with properly escaped backticks", () => {
     const body = "x`y`z";
     const out = genXhr("POST", "https://api.example.dev/send", [], body);
 

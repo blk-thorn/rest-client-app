@@ -1,14 +1,14 @@
 import { describe, it, expect, vi, beforeEach, Mock } from "vitest";
 import { render, screen } from "@testing-library/react";
 import SignInPage from "@/app/[locale]/signin/page";
-import * as hooks from "@/lib/hooks/useAuthRedirect";
+import * as hooks from "@/lib/hooks/use-auth-redirect";
 import { useTranslations } from "next-intl";
 
-vi.mock("@/lib/auth/signin", () => ({
+vi.mock("@/lib/auth/sign-in-action", () => ({
   signInAction: vi.fn(),
 }));
 
-vi.mock("@/lib/hooks/useAuthRedirect", () => ({
+vi.mock("@/lib/hooks/use-auth-redirect", () => ({
   useAuthRedirect: vi.fn(),
 }));
 

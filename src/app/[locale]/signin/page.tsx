@@ -3,10 +3,10 @@
 import { useActionState } from "react";
 import { ROUTES } from "@/constants/routes";
 import { FormState } from "@/types/types";
-import { signInAction } from "@/lib/auth/signin";
+import { signInAction } from "@/lib/auth/sign-in-action";
 import Link from "next/link";
-import { useAuthRedirect } from "@/lib/hooks/useAuthRedirect";
-import Loader from "@/components/ui/Loader";
+import { useAuthRedirect } from "@/lib/hooks/use-auth-redirect";
+import Loader from "@/components/ui/loader";
 import { useTranslations } from "next-intl";
 
 export default function SignInPage() {

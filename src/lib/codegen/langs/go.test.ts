@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { genGo } from "./go";
 
 describe("genGo", () => {
-  it("GET без body: payload=nil, без encoding/json, NewRequest(..., nil), заголовки нормализуются", () => {
+  it("GET without body: uses nil payload, skips encoding/json, passes nil to NewRequest, normalizes headers", () => {
     const out = genGo(
       "GET",
       "   https://api.example.dev/items   ",
@@ -31,7 +31,7 @@ describe("genGo", () => {
     expect(out).toContain('"net/http"');
   });
 
-  it("POST с JSON body: генерирует Marshal, bytes.NewBuffer(payloadBytes), добавляет encoding/json", () => {
+  it("POST with valid JSON body: uses json.Marshal with pretty struct, includes encoding/json import", () => {
     const out = genGo("POST", "https://api.example.dev/create", [], `{"a":1,"b":"x"}`);
 
     expect(out).toContain('"encoding/json"');
@@ -44,7 +44,7 @@ describe("genGo", () => {
     expect(out).toContain('http.NewRequest("POST", url, payload)');
   });
 
-  it("POST с сырым body: bytes.NewBufferString(...), без encoding/json", () => {
+  it("POST with raw/non-JSON body: uses bytes.NewBufferString, skips encoding/json", () => {
     const body = "raw <> `body`";
     const out = genGo("POST", "https://api.example.dev/send", [], body);
 

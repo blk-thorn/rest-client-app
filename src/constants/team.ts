@@ -1,6 +1,6 @@
-import alexandr from "@/assets/Alexandr.webp";
-import anna from "@/assets/Anna.webp";
-import vika from "@/assets/Vika.webp";
+import alexandr from "@/assets/alexandr.webp";
+import anna from "@/assets/anna.webp";
+import vika from "@/assets/vika.webp";
 
 export const team = [
   {

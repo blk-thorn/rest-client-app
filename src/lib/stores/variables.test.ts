@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { useVariablesStore } from "./variables";
-import { Variable } from "@/components/variables/VariablesTable";
+import { Variable } from "@/components/variables/variables-table";
 
 vi.mock("zustand/middleware", () => {
   const localStorageMock = {

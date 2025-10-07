@@ -1,10 +1,10 @@
 "use client";
 
-import WelcomeMessage from "@/components/WelcomeMessage";
-import GeneralInfo from "@/components/GeneraInfo";
-import { UserButtons } from "@/components/ui/UserButtons";
-import Loader from "@/components/ui/Loader";
-import { useAuthToken } from "@/lib/hooks/useAuthToken";
+import WelcomeMessage from "@/components/onboarding/welcome-message";
+import GeneralInfo from "@/components/onboarding/general-info";
+import { UserButtons } from "@/components/ui/user-buttons";
+import Loader from "@/components/ui/loader";
+import { useAuthToken } from "@/lib/hooks/use-auth-token";
 
 export default function HomePage() {
   const { user, loading } = useAuthToken();

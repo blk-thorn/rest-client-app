@@ -28,7 +28,7 @@ afterEach(() => {
 });
 
 describe("useRequest (zustand store)", () => {
-  it("инициализируется ожидаемым состоянием", () => {
+  it("initializes with the expected default state", () => {
     const s = useRequest.getState();
     expect(s.method).toBe("GET");
     expect(s.url).toBe("");
@@ -37,7 +37,7 @@ describe("useRequest (zustand store)", () => {
     expect(s.body).toBe("");
   });
 
-  it("setMethod / setUrl / setBody / removeBody работают", () => {
+  it("setMethod, setUrl, setBody, and removeBody update state correctly", () => {
     const { setMethod, setUrl, setBody, removeBody } = useRequest.getState();
 
     setMethod("POST");
@@ -54,7 +54,7 @@ describe("useRequest (zustand store)", () => {
     expect(s.body).toBe("");
   });
 
-  it("addHeader добавляет пустой заголовок с новым id", () => {
+  it("addHeader appends a new empty header with a unique id", () => {
     const { addHeader } = useRequest.getState();
 
     const before = useRequest.getState().headers;
@@ -69,7 +69,7 @@ describe("useRequest (zustand store)", () => {
     expect(after).not.toBe(before);
   });
 
-  it("updateHeader меняет только нужный хедер по id", () => {
+  it("updateHeader updates only the targeted header by id without affecting others", () => {
     const { addHeader, updateHeader } = useRequest.getState();
     addHeader();
 
@@ -92,7 +92,7 @@ describe("useRequest (zustand store)", () => {
     expect(afterItem2).not.toBe(beforeItem2);
   });
 
-  it("removeHeader удаляет по id", () => {
+  it("removeHeader deletes the header with the given id", () => {
     const { addHeader, removeHeader } = useRequest.getState();
     addHeader();
     addHeader();
@@ -105,7 +105,7 @@ describe("useRequest (zustand store)", () => {
     expect(s.headers.map((h) => h.id)).toEqual(["id-1", "id-3"]);
   });
 
-  it("setHeaders полностью заменяет коллекцию", () => {
+  it("setHeaders completely replaces the headers collection", () => {
     const { setHeaders } = useRequest.getState();
     const next: Header[] = [
       { id: "A", key: "X-One", value: "1" },

@@ -1,4 +1,4 @@
-import { Variable } from "@/components/variables/VariablesTable";
+import { Variable } from "@/components/variables/variables-table";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 

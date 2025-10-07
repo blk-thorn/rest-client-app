@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { genNode } from "./node";
 
 describe("genNode", () => {
-  it("GET: тримит URL, нормализует заголовки, data=null", () => {
+  it("GET: trims URL, normalizes headers, sets data = null, uses native http/https", () => {
     const out = genNode(
       "GET",
       "   https://api.example.dev/items   ",
@@ -23,7 +23,7 @@ describe("genNode", () => {
     expect(out).not.toContain("`");
   });
 
-  it("POST с JSON body: data = JSON.stringify(pretty JSON)", () => {
+  it("POST with valid JSON body: pretty-prints JSON via JSON.stringify and assigns to data", () => {
     const out = genNode("POST", "https://api.example.dev/create", [], `{"a":1,"b":"x"}`);
 
     expect(out).toContain('const options = { method: "POST", headers: {');
@@ -36,7 +36,7 @@ describe("genNode", () => {
     expect(out).toContain("if (data) req.write(data);");
   });
 
-  it("POST с сырым body: использует template literal и экранирует бэктики", () => {
+  it("POST with raw/non-JSON body: uses template literal with properly escaped backticks", () => {
     const body = "x`y`z";
     const out = genNode("POST", "https://api.example.dev/send", [], body);
 
